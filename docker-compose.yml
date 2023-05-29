@@ -1,0 +1,31 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./library_front
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend
+  backend:
+    build:
+      context: ./library_back
+      dockerfile: Dockerfile
+    ports:
+      - '8000:8000'
+    depends_on:
+      - mongodb
+      - postgres
+  mongodb:
+    image: mongo
+    ports:
+      - '27017:27017'
+  postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydatabase
