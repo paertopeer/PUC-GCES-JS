@@ -23,7 +23,10 @@ jobs:
 
       - name: Change directory to library_front
         run: cd ./library_front
-
+        
+      - name: Update locker
+        run: npm intall --prefix ./library_front
+        
       - name: Install dependencies
         run: npm ci --prefix ./library_front
 
