@@ -25,7 +25,9 @@ jobs:
         run: cd ./library_front
 
       - name: Install dependencies
-        run: npm ci --prefix library_front
+        run: |
+          npm ci --prefix library_front
+          npm install --prefix library_front
 
       - name: Run linter
         run: npm run lint
