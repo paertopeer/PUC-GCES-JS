@@ -31,7 +31,7 @@ jobs:
         run: npm install
 
       - name: Run linter
-        run: npx eslint . --ext .js --config .eslintrc.json
+        run: npx eslint . --ext .js --config ./library_front/.eslintrc.json
 
       - name: Set up Docker Compose
         run: |
