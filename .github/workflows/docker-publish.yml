@@ -32,6 +32,9 @@ jobs:
           sudo apt update
           sudo apt install docker-compose
 
+      - name: Change directory to library_front
+        run: cd ./library_front
+
       - name: Build and test with Docker Compose
         run: |
           docker-compose up -d
