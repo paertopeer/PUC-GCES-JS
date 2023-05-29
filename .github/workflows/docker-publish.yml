@@ -34,7 +34,7 @@ jobs:
       #  run: npx eslint ./library_front/src --ext .js
       
       - name: Run Build
-        run: npm run build
+        run: cd ./library_front && npm run build
 
       - name: Set up Docker Compose
         run: |
