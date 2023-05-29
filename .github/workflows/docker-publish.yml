@@ -31,7 +31,7 @@ jobs:
         run: npm install
 
       - name: Run linter
-        run: npm run lint --prefix ./ # Ajuste do caminho do diretório
+        run: npm run lint --prefix ./library_front
 
       - name: Set up Docker Compose
         run: |
