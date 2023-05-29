@@ -5,21 +5,19 @@ FROM node:14 as build
 WORKDIR /app
 
 # Copia o arquivo package.json para o diretório de trabalho
-#COPY package.json .
+COPY package.json .
 
 # Instala as dependências do projeto
 RUN npm install
-
-# Define o comando de inicialização do contêiner
-RUN npm run build
 
 # Copia todo o conteúdo do diretório atual para o diretório de trabalho
 COPY . .
 
 # Expõe a porta 3000 para acesso externo
-#EXPOSE 3000
+EXPOSE 3000
 
-
+# Define o comando de inicialização do contêiner
+RUN npm run build
 
 
 # Estágio de produção
