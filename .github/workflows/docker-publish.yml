@@ -32,6 +32,9 @@ jobs:
 
       #- name: Run linter
       #  run: npx eslint ./library_front/src --ext .js
+      
+      - name: Run Build
+        run: npm run build
 
       - name: Set up Docker Compose
         run: |
