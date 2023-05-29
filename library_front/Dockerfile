@@ -17,7 +17,7 @@ COPY . .
 EXPOSE 3000
 
 # Define o comando de inicialização do contêiner
-RUN npm run build
+#RUN npm run build
 
 
 # Estágio de produção
