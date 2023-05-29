@@ -22,7 +22,7 @@ jobs:
           node-version: 14
 
       - name: Change directory to library_front
-        run: cd ./library_front
+        run: cd .library_front
 
       - name: Remove package-lock.json
         run: rm -f package-lock.json
@@ -30,8 +30,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install eslint
+        run: npm install eslint --save-dev
+
       - name: Run linter
-        run: npm run lint --prefix ./library_front
+        run: npx eslint . --ext .js
 
       - name: Set up Docker Compose
         run: |
