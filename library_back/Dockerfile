@@ -1,20 +1,8 @@
-# Usa uma imagem base do Python
-FROM python:latest
-
-# Define o diretório de trabalho dentro do contêiner
+FROM python:3-alpine
 WORKDIR /app
-
-# Copia o arquivo requirements.txt para o diretório de trabalho
-COPY requirements.txt .
-
-# Instala as dependências do projeto
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copia todo o conteúdo do diretório atual para o diretório de trabalho
-COPY . .
-
-# Expõe a porta 8000 para acesso externo
+COPY ./ ./
+RUN apk add --no-cache postgresql-libs
+RUN apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev
+RUN python3 -m pip install -r requirements.txt
 EXPOSE 8000
-
-# Define o comando de inicialização do contêiner
-CMD ["python", "app.py"]
+CMD python3 manage.py makemigrations ; python3 manage.py migrate ; python3 manage.py runserver 0.0.0.0:8000
