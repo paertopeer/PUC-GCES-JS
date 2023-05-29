@@ -22,7 +22,7 @@ jobs:
           node-version: 14
 
       - name: Change directory to library_front
-        run: cd PUC-GCES-JS/library_front
+        run: cd ./library_front
 
       - name: Remove package-lock.json
         run: rm -f package-lock.json
