@@ -21,6 +21,9 @@ jobs:
         with:
           node-version: 14
 
+      - name: Change directory to library_front
+        run: cd PUC-GCES-JS/library_front
+
       - name: Install dependencies
         run: npm ci
 
@@ -31,9 +34,6 @@ jobs:
         run: |
           sudo apt update
           sudo apt install docker-compose
-
-      - name: Change directory to library_front
-        run: cd ./library_front
 
       - name: Build and test with Docker Compose
         run: |
