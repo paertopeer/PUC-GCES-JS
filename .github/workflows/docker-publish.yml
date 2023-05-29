@@ -25,7 +25,7 @@ jobs:
         run: cd ./library_front
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --prefix library_front
 
       - name: Run linter
         run: npm run lint
@@ -36,7 +36,7 @@ jobs:
           sudo apt install docker-compose
 
       - name: Change directory back to root
-        run: cd ../
+        run: cd ../../
 
       - name: Build and test with Docker Compose
         run: |
