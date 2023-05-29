@@ -30,11 +30,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install eslint
-        run: npm install eslint --save-dev
-
       - name: Run linter
-        run: npx eslint . --ext .js
+        run: npx eslint . --ext .js --config .eslintrc.json
 
       - name: Set up Docker Compose
         run: |
