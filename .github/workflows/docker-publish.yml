@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build-and-deploy:
@@ -13,11 +16,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: |
-            your-frontend-docker-image
-            your-backend-docker-image
+      - name: Set up Docker Compose
+        run: |
+          sudo apt-get install -y docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+
+      - name: Build and deploy
+        run: |
+          docker-compose up -d
