@@ -1,26 +1,32 @@
-name: CI
+name: Docker Compose
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Docker Compose
-        run: |
-          sudo apt-get install -y docker-compose
-          sudo chmod +x /usr/local/bin/docker-compose
+        uses: docker/compose-cli@v1
+        with:
+          compose-file: docker-compose.yml
 
-      - name: Build and deploy
+      - name: Build and run containers
         run: |
-          docker-compose up -d
+          docker-compose up -d --build
+          docker-compose ps
+
+      - name: Run tests
+        run: |
+          # Execute seus testes aqui, por exemplo:
+          docker-compose exec api python -m pytest
+
+      - name: Tear down containers
+        run: docker-compose down
