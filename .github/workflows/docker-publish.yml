@@ -28,8 +28,8 @@ jobs:
       - name: Change directory to library_front
         run: cd ./library_front
 
-      - name: Remove package-lock.json
-        run: rm -f package-lock.json
+     # - name: Remove package-lock.json
+     #   run: rm -f package-lock.json
 
       - name: Install dependencies
         run: cd ./library_front && npm ci
