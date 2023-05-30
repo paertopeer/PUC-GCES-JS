@@ -24,7 +24,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=library_db
-  webserver:
+  x-webserver:
     build:
       context: ./nginx
       dockerfile: Dockerfile
