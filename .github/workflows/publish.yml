@@ -36,7 +36,7 @@ jobs:
           docker-compose exec -T frontend npm install eslint-plugin-react --save-dev
 
           # Execute o comando de verificação de lint
-          docker-compose exec -T frontend npx eslint src
+          docker-compose exec -T frontend npx eslint --fix src
 
 
       - name: Tear down containers
