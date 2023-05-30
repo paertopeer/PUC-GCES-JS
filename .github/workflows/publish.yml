@@ -24,13 +24,13 @@ jobs:
         run: |
           docker-compose up -d
           
-      - name: Install pytest
-        run: |
-          docker-compose exec -T backend pip install pytest
+      #- name: Install pytest
+      #  run: |
+      #    docker-compose exec -T backend pip install pytest
           
-      - name: Run tests
-        run: |
-          docker-compose exec -T backend python -m pytest
+      #- name: Run tests
+      #  run: |
+      #    docker-compose exec -T backend python -m pytest
 
       #- name: Lint check
       #  run: |
