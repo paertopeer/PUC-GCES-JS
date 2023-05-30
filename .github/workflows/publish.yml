@@ -23,3 +23,14 @@ jobs:
       - name: Build and deploy
         run: |
           docker-compose up -d
+          
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build and push Docker image
+        run: |
+          docker-compose build x-webserver
+          docker-compose push x-webserver
