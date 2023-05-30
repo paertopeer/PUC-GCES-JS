@@ -3,49 +3,21 @@ name: CI
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - master
 
 jobs:
-  lint-and-test:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
-    env:
-      CI: false
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2
         with:
-          node-version: 14
-
-      - name: Change directory to library_front
-        run: cd ./library_front
-
-     # - name: Remove package-lock.json
-     #   run: rm -f package-lock.json
-      - name: Install dependencies
-        run: cd ./library_front && npm install
-        
-      - name: Install dependencies 2
-        run: cd ./library_front && npm ci
-
-      #- name: Run linter
-      #  run: npx eslint ./library_front/src --ext .js
-
-      - name: Set up Docker Compose
-        run: |
-          sudo apt update
-          sudo apt install docker-compose
-
-      - name: Change directory back to root
-        run: cd ../../
-
-      - name: Build and test with Docker Compose
-        run: |
-          docker-compose up -d
-          docker-compose run --rm app npm test
+          context: .
+          push: true
+          tags: |
+            your-frontend-docker-image-tag
+            your-backend-docker-image-tag
