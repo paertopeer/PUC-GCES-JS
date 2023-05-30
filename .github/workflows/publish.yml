@@ -31,8 +31,13 @@ jobs:
 
       - name: Lint check
         run: |
-          docker-compose exec frontend npm install eslint-plugin-react --save-dev
-          docker-compose exec frontend npx eslint src
+          # Instale as dependências necessárias para a verificação de lint
+          docker-compose exec -T frontend npm install eslint --save-dev
+          docker-compose exec -T frontend npm install eslint-plugin-react --save-dev
+
+          # Execute o comando de verificação de lint
+          docker-compose exec -T frontend npx eslint src
+
 
       - name: Tear down containers
         run: docker-compose down
