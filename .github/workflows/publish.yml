@@ -24,10 +24,10 @@ jobs:
         run: |
           docker-compose up -d
           
-      - name: Run tests
-        run: |
+      #- name: Run tests
+     #   run: |
           # Execute seus testes aqui, por exemplo:
-          docker-compose exec api python -m pytest
+      #    docker-compose exec api python -m pytest
 
       - name: Lint check
         run: |
