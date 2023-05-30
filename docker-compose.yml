@@ -5,7 +5,7 @@ services:
       context: ./library_front
       dockerfile: Dockerfile
     ports:
-      - '3000:80'
+      - '3000:3000'
     depends_on:
       - backend
   backend:
@@ -24,3 +24,11 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=library_db
+nginx:
+    image: nginx
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - frontend
