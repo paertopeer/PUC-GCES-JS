@@ -30,8 +30,10 @@ jobs:
 
      # - name: Remove package-lock.json
      #   run: rm -f package-lock.json
-
       - name: Install dependencies
+        run: cd ./library_front && npm install
+        
+      - name: Install dependencies 2
         run: cd ./library_front && npm ci
 
       #- name: Run linter
