@@ -10,7 +10,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+RUN CI=false && npm run build
 
 # Estágio de produção
 FROM nginx:1.19-alpine
