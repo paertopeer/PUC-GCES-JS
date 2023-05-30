@@ -24,19 +24,18 @@ jobs:
         run: |
           docker-compose up -d
           
-      #- name: Run tests
-     #   run: |
-          # Execute seus testes aqui, por exemplo:
-      #    docker-compose exec api python -m pytest
-
-      - name: Lint check
+      - name: Run tests
         run: |
-          # Instale as dependências necessárias para a verificação de lint
-          docker-compose exec -T frontend npm install eslint --save-dev
-          docker-compose exec -T frontend npm install eslint-plugin-react --save-dev
+          docker-compose exec backend python -m pytest
+
+      #- name: Lint check
+      #  run: |
+      #    # Instale as dependências necessárias para a verificação de lint
+      #    docker-compose exec -T frontend npm install eslint --save-dev
+      #    docker-compose exec -T frontend npm install eslint-plugin-react --save-dev
 
           # Execute o comando de verificação de lint
-          docker-compose exec -T frontend npx eslint --fix src
+      #    docker-compose exec -T frontend npx eslint --fix src
 
 
       - name: Tear down containers
