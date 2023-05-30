@@ -24,8 +24,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=library_db
-x-webserver:
-    image: nginx
+ x-webserver:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
     ports:
       - '80:80'
     volumes:
