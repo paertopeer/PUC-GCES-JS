@@ -1,23 +1,13 @@
-# Estágio de compilação
-FROM node:14.18.1-alpine as build
+FROM node:14-alpine
 
 WORKDIR /app
 
 COPY package*.json ./
-COPY package-lock.json ./
 
-RUN npm install && npm ci
+RUN npm install
 
 COPY . .
 
-RUN CI=false && npm run build
+EXPOSE 3000
 
-# Estágio de produção
-FROM nginx:1.19-alpine
-
-COPY --from=build /app/build /usr/share/nginx/html
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "start"]
