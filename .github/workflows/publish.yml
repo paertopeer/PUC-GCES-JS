@@ -13,10 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Docker Compose
-        uses: docker/compose-action@v1
-        with:
-          compose-file: docker-compose.yml
+      - name: Set up Docker
+        uses: docker/setup-docker@v1
 
       - name: Build and run containers
         run: |
