@@ -1,5 +1,5 @@
 # Estágio de compilação
-FROM node:12-alpine as build
+FROM node:14.18.1-alpine as build
 
 WORKDIR /app
 
