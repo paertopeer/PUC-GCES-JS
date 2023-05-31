@@ -9,7 +9,7 @@ on:
       - lint
 
 jobs:
-  build-and-deploy:
+  test-with-lint:
     runs-on: ubuntu-latest
 
     steps:
