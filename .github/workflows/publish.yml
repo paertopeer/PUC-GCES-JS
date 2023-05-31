@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - tests
   pull_request:
     branches:
-      - main
+      - tests
 
 jobs:
   build-and-deploy:
@@ -24,34 +24,19 @@ jobs:
         run: |
           docker-compose up -d
           
-      #- name: Install pytest
-      #  run: |
-      #    docker-compose exec -T backend pip install pytest
+      - name: Install pytest
+        run: |
+          docker-compose exec -T backend pip install pytest
           
-      #- name: Run tests
-      #  run: |
-      #    docker-compose exec -T backend python -m pytest
-
-      #- name: Lint check
-      #  run: |
-      #    # Instale as dependências necessárias para a verificação de lint
-      #    docker-compose exec -T frontend npm install eslint --save-dev
-      #    docker-compose exec -T frontend npm install eslint-plugin-react --save-dev
-
-          # Execute o comando de verificação de lint
-      #    docker-compose exec -T frontend npx eslint --fix src
+      - name: Run tests - js
+        run: |
+          docker-compose exec -T frontend npm test
+                    
+      - name: Run tests - python
+        run: |
+          docker-compose exec -T backend python -m pytest
 
 
       - name: Tear down containers
         run: docker-compose down
-          
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Build and push Docker image
-        run: |
-          docker-compose build x-webserver
-          docker-compose push x-webserver
